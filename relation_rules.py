@@ -19,15 +19,4 @@ groups = {
     8: lines_789,
 }
 
-def get_block(_sudoku: list[list[int]], lineIndex, columnIndex):
-    lines = groups.get(lineIndex)
-    columns = groups.get(columnIndex)
-
-    for l in lines:
-        for c in columns:
-            yield _sudoku[l][c]
-
-def get_column(_sudoku: list[list[int]], columnIndex):
-    for l in _sudoku:
-        yield l[columnIndex]
 

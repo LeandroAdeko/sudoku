@@ -1,37 +1,21 @@
-from sudoku_examples import print_sudoku, sudoku_medio
+from sudoku_examples import sudoku_medio, sudoku_facil
 
-from relation_rules import get_block, get_column
+from sudoku_master import SudokuMaster
 
-from assert_possibilities import reduce_possibilities, if_only_one, desired
+master = SudokuMaster(sudoku_facil, False)
 
-def get_relations(_sudoku: list[list], lineIndex: int, columnIndex: int):
+print("------------- ANTES")
+master.show()
 
-    relations: list[int] = _sudoku[lineIndex][:]
+interactions = 0
+max_turns = 5
 
-    relations.extend(get_block(_sudoku,lineIndex,columnIndex))
-    relations.extend(get_column(_sudoku,columnIndex))
+while master.empty != 0 and interactions < max_turns:
+    master.solution_per_unit()
+    master.solution_per_line()
+    interactions += 1
+    print(f"Interação {interactions} finished with {master.empty}")
 
-    relations = [r for r in relations if isinstance(r, int)]
-
-    return list(set(relations))
-    
-sudoku = sudoku_medio.copy()
-
-for lineIndex, line in enumerate(sudoku):
-    for columnIndex, unit in enumerate(line):
-        if unit:
-            continue
-
-        blocked_numbers = get_relations(sudoku, lineIndex, columnIndex)
-
-        possibilities = reduce_possibilities(blocked_numbers)
-        one, numbers = if_only_one(possibilities)
-
-        sudoku[lineIndex][columnIndex] = numbers
-        
-        if one:
-            print(f'Sudoku[{lineIndex}][{columnIndex}] solucinado: {numbers}')
-        else:
-            print(f"Sudoku[{lineIndex}][{columnIndex}] possibilidades: {numbers}")
-
-print_sudoku(sudoku)
+print("-------------------")
+master.show()
+print("DEPOIS ------------")

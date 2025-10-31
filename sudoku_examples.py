@@ -1,24 +1,27 @@
+sudoku_facil: list[list[int]] = [
+    [ 7,0,0,6,0,3,4,0,5 ],
+    [ 2,4,0,9,1,0,0,0,0 ],
+    [ 8,6,5,0,2,0,3,0,0 ],
+    [ 0,8,6,1,3,0,0,0,0 ],
+    [ 4,0,0,0,0,8,0,0,6 ],
+    [ 0,0,0,0,6,4,0,5,0 ],
+    [ 3,0,0,0,5,0,1,8,9 ],
+    [ 6,0,9,8,0,0,0,0,0 ],
+    [ 1,5,8,0,0,0,6,7,0 ],
+]
 
-def print_sudoku(board):
-    """
-    Prints a Sudoku board in a pretty, human-readable format.
+sudoku_facil_solucao: list[list[int]] = [
+    [ 7,9,1,6,8,3,4,2,5 ],
+    [ 2,4,3,9,1,5,7,6,8 ],
+    [ 8,6,5,4,2,7,3,9,1 ],
+    [ 5,8,6,1,3,2,9,4,7 ],
+    [ 4,3,7,5,9,8,2,1,6 ],
+    [ 9,1,2,7,6,4,8,5,3 ],
+    [ 3,7,4,2,5,6,1,8,9 ],
+    [ 6,2,9,8,7,1,5,3,4 ],
+    [ 1,5,8,3,4,9,6,7,2 ],
+]
 
-    Args:
-        board: A 9x9 list of lists representing the Sudoku board.
-               Empty cells can be represented by 0 or None, or a placeholder character.
-    """
-    for r_idx, row in enumerate(board):
-        if r_idx % 3 == 0 and r_idx != 0:
-            print("- - - - - - - - - - - - ") # Horizontal separator for 3x3 blocks
-
-        for c_idx, num in enumerate(row):
-            if c_idx % 3 == 0 and c_idx != 0:
-                print(" | ", end="") # Vertical separator for 3x3 blocks
-
-            if c_idx == 8:
-                print(num if num in [1,2,3,4,5,6,7,8,9] else ".", end="\n") # Print number and new line at end of row
-            else:
-                print(str(num if num in [1,2,3,4,5,6,7,8,9] else ".") + " ", end="") # Print number and space
 
 sudoku_medio: list[list[int]] = [
     [ 4,5,0,9,0,0,0,0,0 ],
