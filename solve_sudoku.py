@@ -1,20 +1,21 @@
-from sudoku_examples import sudoku_medio, sudoku_facil
+from sudoku_examples import sudoku_medio, sudoku_facil, sudoku_facil_solucao
 
-from sudoku_master import SudokuMaster
+from sudoku_master import SudokuMaster, Methods
 
-master = SudokuMaster(sudoku_facil, False)
+master = SudokuMaster(sudoku_facil, sudoku_facil_solucao, True)
 
-print("------------- ANTES")
+print(f"------------- COMEÇO - {master.empty}")
 master.show()
 
 interactions = 0
-max_turns = 5
+max_turns = 7
 
 while master.empty != 0 and interactions < max_turns:
-    master.solution_per_unit()
-    master.solution_per_line()
+    master.solve([
+        Methods.PER_COLUMN,
+        Methods.PER_LINE,
+    ])
     interactions += 1
-    print(f"Interação {interactions} finished with {master.empty}")
 
 print("-------------------")
 master.show()
